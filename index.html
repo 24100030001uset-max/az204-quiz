@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Mock Test by Aaditya Sir</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="noise"></div>
+
+  <div class="app-shell" id="appShell">
+    <header class="topbar glass-panel">
+      <div class="brand-block">
+        <div class="eyebrow">Competitive Exam Portal</div>
+        <h1>Mock Test by Aaditya Sir</h1>
+        <p>Practice Authentic Previous Year Questions</p>
+      </div>
+
+      <div class="topbar-metrics">
+        <div class="metric-card">
+          <span class="metric-label">Exam Timer</span>
+          <strong id="examTimer">45:00</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Question Timer</span>
+          <strong id="questionTimer">01:30</strong>
+        </div>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark light mode">
+          <span class="icon" id="themeIcon">◐</span>
+        </button>
+        <button class="icon-button mobile-only" id="sidebarToggle" type="button" aria-label="Toggle question palette">
+          <span class="icon">☰</span>
+        </button>
+      </div>
+
+      <div class="header-progress">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progressText">Question 1 of 30</span>
+          <span id="answeredText">0 answered</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="quiz-stage glass-panel">
+        <div class="exam-status-row">
+          <div class="chip" id="attemptChip">AZ-204 Mock Test</div>
+          <div class="chip subtle" id="questionMeta">Single Correct MCQ</div>
+          <div class="chip subtle" id="difficultyChip">Difficulty: Medium</div>
+          <div class="chip subtle" id="sourceChip">PYQ Source</div>
+        </div>
+
+        <article class="question-card" id="questionCard" aria-live="polite">
+          <div class="question-header">
+            <div>
+              <span class="question-number" id="questionNumber">Q1</span>
+              <h2 id="questionText">Loading question...</h2>
+            </div>
+            <div class="badge-row">
+              <span class="badge" id="questionType">Single Correct</span>
+              <button class="badge badge-action" id="markReviewButton" type="button">Mark for review</button>
+            </div>
+          </div>
+
+          <div class="question-details">
+            <span id="sourceLabel">Source: PYQ</span>
+            <span id="yearLabel">Year: 2024</span>
+            <span id="topicLabel">Topic: Storage</span>
+          </div>
+
+          <form class="options-grid" id="optionsForm"></form>
+
+          <div class="selection-note" id="selectionNote">
+            Select an option to unlock the next step.
+          </div>
+
+          <div class="feedback-panel hidden" id="feedbackPanel">
+            <div class="feedback-head">
+              <strong id="feedbackTitle">Answer revealed</strong>
+              <span id="feedbackScore"></span>
+            </div>
+            <div class="feedback-row">
+              <span class="feedback-pill correct">Correct answer: <strong id="correctAnswerText"></strong></span>
+              <span class="feedback-pill wrong">Your answer: <strong id="yourAnswerText"></strong></span>
+            </div>
+            <p id="explanationText"></p>
+            <div class="why-box" id="whyBox"></div>
+          </div>
+        </article>
+
+        <div class="action-row">
+          <button class="secondary-button" id="prevButton" type="button">Previous</button>
+          <button class="ghost-button" id="shuffleButton" type="button">Shuffle Questions</button>
+          <button class="accent-button" id="nextButton" type="button">Check Answer</button>
+          <button class="danger-button" id="submitButton" type="button">Submit Test</button>
+        </div>
+
+        <div class="keyboard-hint">
+          Shortcuts: 1-4 select options, Enter submit/next, ← → navigate, M mark review, T theme, S submit.
+        </div>
+      </section>
+
+      <aside class="sidebar glass-panel" id="sidebar">
+        <div class="sidebar-head">
+          <div>
+            <div class="eyebrow">Question Palette</div>
+            <h3>Navigate instantly</h3>
+          </div>
+          <button class="ghost-button small-only" id="closeSidebarButton" type="button">Close</button>
+        </div>
+
+        <div class="palette-legend">
+          <span><i class="dot answered"></i> Answered</span>
+          <span><i class="dot review"></i> Review</span>
+          <span><i class="dot current"></i> Current</span>
+        </div>
+
+        <div class="palette-grid" id="paletteGrid"></div>
+
+        <div class="sidebar-footer">
+          <button class="ghost-button wide" id="restartButton" type="button">Restart Test</button>
+          <button class="ghost-button wide" id="clearSaveButton" type="button">Clear Saved Progress</button>
+        </div>
+      </aside>
+    </main>
+
+    <section class="results-panel glass-panel hidden" id="resultsPanel" aria-live="polite">
+      <div class="results-grid">
+        <div class="result-card hero-result">
+          <div class="eyebrow">Final Result</div>
+          <h2 id="performanceTitle">Performance Report</h2>
+          <p id="performanceMessage"></p>
+          <div class="score-ring">
+            <div>
+              <span class="score-value" id="finalScore">0</span>
+              <span class="score-label">/ 30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card stats-card">
+          <div class="stat-grid">
+            <div class="stat-box"><span>Percentage</span><strong id="percentageValue">0%</strong></div>
+            <div class="stat-box"><span>Accuracy</span><strong id="accuracyValue">0%</strong></div>
+            <div class="stat-box"><span>Correct</span><strong id="correctValue">0</strong></div>
+            <div class="stat-box"><span>Wrong</span><strong id="wrongValue">0</strong></div>
+            <div class="stat-box"><span>Time Taken</span><strong id="timeTakenValue">00:00</strong></div>
+            <div class="stat-box"><span>Review Marks</span><strong id="reviewCountValue">0</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card analysis-card">
+        <div class="eyebrow">Weak Topic Analysis</div>
+        <div id="weakTopics"></div>
+      </div>
+
+      <div class="result-card review-card">
+        <div class="review-head">
+          <div>
+            <div class="eyebrow">Review Section</div>
+            <h3>Attempted Questions</h3>
+          </div>
+          <button class="ghost-button" id="backToTestButton" type="button">Back to Test</button>
+        </div>
+        <div id="reviewList" class="review-list"></div>
+      </div>
+    </section>
+  </div>
+
+  <template id="optionTemplate">
+    <label class="option-card">
+      <input type="radio" name="option" />
+      <span class="option-marker"></span>
+      <span class="option-text"></span>
+    </label>
+  </template>
+
+  <script src="script.js?v=20260509"></script>
+</body>
+</html>
